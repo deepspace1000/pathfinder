@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@400..800&display=swap');
+
+:root {
+  --primary: #0090c1;
+  --dark-primary: #053c51;
+  --bg-primary: #eff7f6;
+}
+
 body {
   margin: 0;
   overflow-y: scroll;
@@ -6,5 +14,7 @@ body {
 #root {
   min-height: 100%;
   height: auto;
-  padding: 2rem 4rem;
+  /*padding: 2rem 4rem;*/
+  background-color: var(--bg-primary);
+  font-family: 'Open Sans', sans-serif;
 }
