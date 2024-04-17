@@ -8,7 +8,7 @@ export function HomePage() {
     <>
       <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }}>
         <Grid xs={8} sx={{ position: 'relative', padding: '3rem 5rem' }}>
-          <Typography level={'h1'} component={'h1'}>
+    <Typography level={'h1'} component={'h1'}>
             Pathfinder
           </Typography>
           <TextContainer>
