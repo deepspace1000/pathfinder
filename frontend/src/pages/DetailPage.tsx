@@ -18,9 +18,7 @@ export function DetailPage() {
                 <BottomImage src="../assets/homepage/img.png" />
 
                 <Link to={"/"}>
-                    <Button>
-                        <ButtonImage src="../assets/homepage/ReturnHome.png"/>
-                    </Button>
+                    <ButtonImage src="../assets/homepage/ReturnHome.png"/>
                 </Link>
             </Grid>
         </>
@@ -38,9 +36,10 @@ const BottomImage = styled('img')`
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 30rem; /* Maintain aspect ratio */
+  height: 30rem;
 `;
 
+/*
 const Button = styled('button')`
   position: absolute;
   border: none;
@@ -53,6 +52,7 @@ const Button = styled('button')`
     background-color: inherit;
   }
 `;
+*/
 
 const TextContainer = styled('div')`
   font-family: 'Syne', 'sans-serif';
