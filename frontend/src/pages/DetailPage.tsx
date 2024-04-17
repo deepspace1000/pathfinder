@@ -59,7 +59,7 @@ const TextContainer = styled('div')`
   font-size: 24px;
   position: absolute;
   margin-top: 3rem;
-  margin-left: 30rem;
+  right: 0;
   padding-left: 10px;
   box-sizing: border-box;
   max-width: 25rem;
