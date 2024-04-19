@@ -1,4 +1,4 @@
-import { Grid, styled, Typography } from '@mui/joy';
+import { Grid, styled, Typography, Button } from '@mui/joy';
 
 import LocationIcon from '../assets/homepage/location-icon.svg?react';
 import { SearchForm } from '../components/SearchForm.tsx';
@@ -37,7 +37,7 @@ export function HomePage() {
         </Grid>
       </Grid>
 
-        <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }}>
+        <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: "relative" }}>
             <Grid xs={12} sx={{ position: 'relative', padding: '3rem 5rem'}}>
                 <Typography level={'h1'} component={'h1'} display={'inline'}>
                     Our Services
@@ -46,14 +46,20 @@ export function HomePage() {
                     Navigate effortlessly with our Pathfinder app's powerful search function.
                 </ServiceTitleTextContainer>
             </Grid>
-              <BottomLeftImage src="../assets/homepage/img.png" />
-              <Link to={"/detail"}>
-                  <ButtonImage src="../assets/homepage/ReturnHome.png"/>
-              </Link>
+
+            <BottomLeftImage src="../assets/homepage/img.png" />
+
+            <Link to={"#"}>
+                <Button sx={{borderRadius: 0, borderTopLeftRadius: "30px", height: "6rem", width: "15rem", right: 0, bottom: 0, position: "absolute" }}>
+                    Return Home
+                </Button>
+            </Link>
         </Grid>
     </>
   );
 }
+
+/*<ButtonImage src="../assets/homepage/ReturnHome.png"/>*/
 
 const FrontImage = styled('img')`
   width: auto;
@@ -91,7 +97,6 @@ const ServiceTitleTextContainer = styled('div')`
   margin-top: 3rem;
   right: 0;
   padding-left: 10px;
-  box-sizing: border-box;
   max-width: 25rem;
   border-left: 5px solid var(--primary);
   display: inline;
@@ -110,10 +115,4 @@ const BottomLeftImage = styled('img')`
   bottom: 0;
   left: 0;
   height: 30rem;
-`;
-
-const ButtonImage = styled('img')`
-  bottom: 0;
-  right: 0;
-  height: 4rem;
 `;
