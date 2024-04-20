@@ -11,6 +11,10 @@ body {
   overflow-y: scroll;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #root {
   min-height: 100%;
   height: auto;
