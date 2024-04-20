@@ -1,13 +1,11 @@
 import { Grid, styled, Typography, Button } from '@mui/joy';
-
 import LocationIcon from '../assets/homepage/location-icon.svg?react';
 import { SearchForm } from '../components/SearchForm.tsx';
-import {Link} from "react-router-dom";
 
 export function HomePage() {
   return (
     <>
-      <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }}>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%'}} id={"header"}>
         <Grid xs={8} sx={{ position: 'relative', padding: '3rem 5rem' }}>
             <Typography level={'h1'} component={'h1'}>
             Pathfinder
@@ -49,11 +47,11 @@ export function HomePage() {
 
             <BottomLeftImage src="../assets/homepage/img.png" />
 
-            <Link to={"#"}>
+            <a href={"#header"}>
                 <Button sx={{borderRadius: 0, borderTopLeftRadius: "30px", height: "6rem", width: "15rem", right: 0, bottom: 0, position: "absolute" }}>
                     Return Home
                 </Button>
-            </Link>
+            </a>
         </Grid>
     </>
   );
