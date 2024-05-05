@@ -49,21 +49,21 @@ export function HomePage() {
           <ServiceCard sx={{ marginLeft: '26rem', marginBottom: '2rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Time
-              <ServiceIcons src={'../assets/homepage/time_icon.svg'} sx={{ marginLeft: '100px' }} />
+              <img src={'../assets/homepage/time_icon.svg'} style={{ marginLeft: '100px' }} alt={'time-icon'} />
             </Typography>
             Stay synced globally with our Pathfinder app – perfect timing, zero hassle.
           </ServiceCard>
           <ServiceCard sx={{ marginLeft: '39rem', marginBottom: '2rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Currency
-              <ServiceIcons src={'../assets/homepage/currency_icon.svg'} sx={{ marginLeft: '25px' }} />
+              <img src={'../assets/homepage/currency_icon.svg'} style={{ marginLeft: '25px' }} alt={'currency-icon'} />
             </Typography>
             Stay savvy worldwide with our Pathfinder app – precise currency, no stress.
           </ServiceCard>
           <ServiceCard sx={{ marginLeft: '47rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Weather
-              <ServiceIcons src={'../assets/homepage/weather_icon.svg'} sx={{ marginLeft: '30px' }} />
+              <img src="../assets/homepage/weather_icon.svg" style={{ marginLeft: '30px' }} alt={'weather-icon'} />
             </Typography>
             Stay weather-wise worldwide with our Pathfinder app – accurate forecasts, no fuss.
           </ServiceCard>
@@ -90,8 +90,6 @@ export function HomePage() {
   );
 }
 
-/*<ButtonImage src="../assets/homepage/ReturnHome.png"/>*/
-
 const FrontImage = styled('img')`
   width: auto;
   height: 25vw;
@@ -113,8 +111,6 @@ const FrontImage3 = styled(FrontImage)`
   top: -3em;
   left: 25em;
 `;
-
-const ServiceIcons = styled('img')``;
 
 const MainPageTitleTextContainer = styled('div')`
   font-family: 'Syne', 'sans-serif';
