@@ -1,13 +1,13 @@
-import { Grid, styled, Typography, Button } from '@mui/joy';
+import { Button, Grid, Typography, styled } from '@mui/joy';
 import LocationIcon from '../assets/homepage/location-icon.svg?react';
 import { SearchForm } from '../components/SearchForm.tsx';
 
 export function HomePage() {
   return (
     <>
-      <Grid container sx={{ flexGrow: 1, maxWidth: '100%'}} id={"header"}>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }} id={'header'}>
         <Grid xs={8} sx={{ position: 'relative', padding: '3rem 5rem' }}>
-            <Typography level={'h1'} component={'h1'}>
+          <Typography level={'h1'} component={'h1'}>
             Pathfinder
           </Typography>
           <MainPageTitleTextContainer>
@@ -35,24 +35,57 @@ export function HomePage() {
         </Grid>
       </Grid>
 
-        <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: "relative" }}>
-            <Grid xs={12} sx={{ position: 'relative', padding: '3rem 5rem'}}>
-                <Typography level={'h1'} component={'h1'} display={'inline'}>
-                    Our Services
-                </Typography>
-                <ServiceTitleTextContainer>
-                    Navigate effortlessly with our Pathfinder app's powerful search function.
-                </ServiceTitleTextContainer>
-            </Grid>
-
-            <BottomLeftImage src="../assets/homepage/img.png" />
-
-            <a href={"#header"}>
-                <Button sx={{borderRadius: 0, borderTopLeftRadius: "30px", height: "6rem", width: "15rem", right: 0, bottom: 0, position: "absolute" }}>
-                    Return Home
-                </Button>
-            </a>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }}>
+        <Grid xs={12} sx={{ position: 'relative', padding: '3rem 5rem' }}>
+          <Typography level={'h1'} component={'h1'} display={'inline'}>
+            Our Services
+          </Typography>
+          <ServiceTitleTextContainer>
+            Navigate effortlessly with our Pathfinder app's powerful search function.
+          </ServiceTitleTextContainer>
         </Grid>
+
+        <Grid sx={{ height: '500px', position: 'absolute', bottom: '5rem' }}>
+          <ServiceCard sx={{ marginLeft: '26rem', marginBottom: '2rem' }}>
+            <Typography level={'h2'} sx={{ fontSize: '40px' }}>
+              Time
+              <ServiceIcons src={'../assets/homepage/time_icon.svg'} sx={{ marginLeft: '100px' }} />
+            </Typography>
+            Stay synced globally with our Pathfinder app – perfect timing, zero hassle.
+          </ServiceCard>
+          <ServiceCard sx={{ marginLeft: '39rem', marginBottom: '2rem' }}>
+            <Typography level={'h2'} sx={{ fontSize: '40px' }}>
+              Currency
+              <ServiceIcons src={'../assets/homepage/currency_icon.svg'} sx={{ marginLeft: '25px' }} />
+            </Typography>
+            Stay savvy worldwide with our Pathfinder app – precise currency, no stress.
+          </ServiceCard>
+          <ServiceCard sx={{ marginLeft: '47rem' }}>
+            <Typography level={'h2'} sx={{ fontSize: '40px' }}>
+              Weather
+              <ServiceIcons src={'../assets/homepage/weather_icon.svg'} sx={{ marginLeft: '30px' }} />
+            </Typography>
+            Stay weather-wise worldwide with our Pathfinder app – accurate forecasts, no fuss.
+          </ServiceCard>
+        </Grid>
+
+        <BottomLeftImage src="../assets/homepage/img.png" />
+
+        <a href={'#header'}>
+          <Button
+            sx={{
+              borderRadius: 0,
+              borderTopLeftRadius: '30px',
+              height: '6rem',
+              width: '15rem',
+              right: 0,
+              bottom: 0,
+              position: 'absolute',
+            }}>
+            Return Home
+          </Button>
+        </a>
+      </Grid>
     </>
   );
 }
@@ -80,6 +113,8 @@ const FrontImage3 = styled(FrontImage)`
   top: -3em;
   left: 25em;
 `;
+
+const ServiceIcons = styled('img')``;
 
 const MainPageTitleTextContainer = styled('div')`
   font-family: 'Syne', 'sans-serif';
@@ -112,5 +147,15 @@ const DecorTopRight = styled('div')`
 const BottomLeftImage = styled('img')`
   bottom: 0;
   left: 0;
+  position: absolute;
   height: 30rem;
+`;
+
+const ServiceCard = styled('div')`
+  font-family: 'Syne', 'sans-serif';
+  width: 280px;
+  height: 150px;
+  padding: 10px 25px;
+  border-radius: 37px;
+  background: #76bdd6;
 `;

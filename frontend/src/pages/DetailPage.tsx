@@ -1,28 +1,25 @@
 import { Grid, styled, Typography } from '@mui/joy';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export function DetailPage() {
+  return (
+    <>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }}>
+        <Grid xs={12} sx={{ position: 'relative', padding: '3rem 5rem', flexWrap: 'nowrap' }}>
+          <Typography level={'h1'} component={'h1'} display={'inline'}>
+            Detail
+          </Typography>
+          <TextContainer>Navigate effortlessly with our Pathfinder app's powerful search function.</TextContainer>
+        </Grid>
 
-    return (
-        <>
-            <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }}>
-                <Grid xs={12} sx={{ position: 'relative', padding: '3rem 5rem', flexWrap:'nowrap'}}>
-                    <Typography level={'h1'} component={'h1'} display={'inline'}>
-                        Detail
-                    </Typography>
-                    <TextContainer>
-                        Navigate effortlessly with our Pathfinder app's powerful search function.
-                    </TextContainer>
-                </Grid>
+        <BottomImage src="../assets/homepage/img.png" />
 
-                <BottomImage src="../assets/homepage/img.png" />
-
-                <Link to={"/"}>
-                    <ButtonImage src="../assets/homepage/ReturnHome.png"/>
-                </Link>
-            </Grid>
-        </>
-    );
+        <Link to={'/'}>
+          <ButtonImage src="../assets/homepage/ReturnHome.png" />
+        </Link>
+      </Grid>
+    </>
+  );
 }
 
 const ButtonImage = styled('img')`
