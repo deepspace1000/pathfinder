@@ -1,5 +1,12 @@
 import { Button, Grid, Typography, styled } from '@mui/joy';
+import americaImg from '../assets/homepage/america_scaled.jpg';
+import chinaImg from '../assets/homepage/china_scaled.jpg';
+import currnecyIcon from '../assets/homepage/currency_icon.svg';
+import leftCornerImg from '../assets/homepage/img.png';
 import LocationIcon from '../assets/homepage/location-icon.svg?react';
+import londonImg from '../assets/homepage/london_scaled.jpg';
+import timeIcon from '../assets/homepage/time_icon.svg';
+import weatherIcon from '../assets/homepage/weather_icon.svg';
 import { SearchForm } from '../components/SearchForm.tsx';
 
 export function HomePage() {
@@ -29,9 +36,9 @@ export function HomePage() {
         </Grid>
 
         <Grid position={'relative'} display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
-          <FrontImage1 src="../assets/homepage/china_scaled.jpg" />
-          <FrontImage2 src="../assets/homepage/london_scaled.jpg" />
-          <FrontImage3 src="../assets/homepage/america_scaled.jpg" />
+          <FrontImage1 src={chinaImg} />
+          <FrontImage2 src={londonImg} />
+          <FrontImage3 src={americaImg} />
         </Grid>
       </Grid>
 
@@ -49,27 +56,27 @@ export function HomePage() {
           <ServiceCard sx={{ marginLeft: '26rem', marginBottom: '2rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Time
-              <img src={'../assets/homepage/time_icon.svg'} style={{ marginLeft: '100px' }} alt={'time-icon'} />
+              <img src={timeIcon} style={{ marginLeft: '100px' }} alt={'time-icon'} />
             </Typography>
             Stay synced globally with our Pathfinder app – perfect timing, zero hassle.
           </ServiceCard>
           <ServiceCard sx={{ marginLeft: '39rem', marginBottom: '2rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Currency
-              <img src={'../assets/homepage/currency_icon.svg'} style={{ marginLeft: '25px' }} alt={'currency-icon'} />
+              <img src={currnecyIcon} style={{ marginLeft: '25px' }} alt={'currency-icon'} />
             </Typography>
             Stay savvy worldwide with our Pathfinder app – precise currency, no stress.
           </ServiceCard>
           <ServiceCard sx={{ marginLeft: '47rem' }}>
             <Typography level={'h2'} sx={{ fontSize: '40px' }}>
               Weather
-              <img src="../assets/homepage/weather_icon.svg" style={{ marginLeft: '30px' }} alt={'weather-icon'} />
+              <img src={weatherIcon} style={{ marginLeft: '30px' }} alt={'weather-icon'} />
             </Typography>
             Stay weather-wise worldwide with our Pathfinder app – accurate forecasts, no fuss.
           </ServiceCard>
         </Grid>
 
-        <BottomLeftImage src="../assets/homepage/img.png" />
+        <BottomLeftImage src={leftCornerImg} />
 
         <a href={'#header'}>
           <Button
