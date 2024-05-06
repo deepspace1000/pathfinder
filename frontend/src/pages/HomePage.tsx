@@ -48,7 +48,7 @@ export function HomePage() {
             Our Services
           </Typography>
           <ServiceTitleTextContainer>
-            Navigate effortlessly with our Pathfinder app's powerful search function.
+            Navigate effortlessly with our Pathfinder app`s powerful search function.
           </ServiceTitleTextContainer>
         </Grid>
 
