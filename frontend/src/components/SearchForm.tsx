@@ -1,14 +1,20 @@
 import { Search } from '@mui/icons-material';
 import { Button, Input, Stack, styled, Typography } from '@mui/joy';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function SearchForm() {
+  const [getRegion, setRegion] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate(`/detail/${getRegion}`);
+  };
+
   return (
     <FormContainer>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          console.log(event.target);
-        }}>
+      <form onSubmit={handleSubmit}>
         <Stack spacing={3}>
           <div>
             <Typography
@@ -30,6 +36,8 @@ export function SearchForm() {
             <CustomDivider />
           </div>
           <Input
+            value={getRegion}
+            onChange={(e) => setRegion(e.target.value)}
             startDecorator={
               <Search
                 sx={{
@@ -38,7 +46,7 @@ export function SearchForm() {
                 }}
               />
             }
-            placeholder={'Enter your Country'}
+            placeholder={'Enter your City of choice'}
             sx={{
               background: 'rgba(17,90,162,0.45)',
               color: '#053c51',
