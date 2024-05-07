@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .yarn/*
 !.yarn/releases
+.env
 
 # Editor directories and files
 .vscode/*
