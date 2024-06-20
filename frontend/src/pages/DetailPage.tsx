@@ -2,6 +2,7 @@ import { Button, Card, Grid, Typography, styled } from '@mui/joy';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { N200, currentWeatherData } from '../api/generated/openWeather.ts';
 import searcgicon from '../assets/homepage/search_icon.svg';
 import { CurrencyExchange } from '../components/CurrencyExchange.tsx';
 
@@ -13,93 +14,65 @@ export function DetailPage() {
   const { region } = useParams();
   const WEATHER_API_KEY = `${import.meta.env.VITE_WEATHER_API}`;
   const TIME_API_KEY = `${import.meta.env.VITE_TIME_API}`;
-  const [getLat, setLat] = useState('');
-  const [getLon, setLon] = useState('');
-  const [getDisplayedDate, setDisplayedDate] = useState('');
-  const [getDisplayedTime, setDisplayedTime] = useState('');
-  const [getTime, setTime] = useState<TimeResponse | null>(null);
-  const [getTemp, setTemp] = useState('');
-  const [getFeelsLikeTemp, setFeelsLikeTemp] = useState('');
-  const [getHumidity, setHumidity] = useState('');
-  const [getMaxTemp, setMaxTemp] = useState('');
-  const [getMinTemp, setMinTemp] = useState('');
-  const [getDescription, setDescription] = useState('');
-  const [getWeather, setWeather] = useState([]);
+  const [lat, setLat] = useState('');
+  const [lon, setLon] = useState('');
+  const [displayedDate, setDisplayedDate] = useState('');
+  const [displayedTime, setDisplayedTime] = useState('');
+  const [time, setTime] = useState<TimeResponse | null>(null);
+  const [weather, setWeather] = useState<N200 | undefined>();
 
   // on region
   useEffect(() => {
     if (region) {
-      getLatLong();
+      fetchLatLong()
+        .then((result) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
+          const { lat, lon }: { lat: string; lon: string } = result.data[0] || {};
+          setLat(lat);
+          setLon(lon);
+        })
+        .catch((error) => console.log(error));
     }
   }, [region]);
 
   // on lat/lon
   useEffect(() => {
-    if (getLat && getLon) {
-      console.log('Latitude:', getLat);
-      console.log('Longitude:', getLon);
-      getCurrentTime();
-      getWeatherData();
+    if (lat && lon) {
+      getCurrentTime()
+        .then((result) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          setTime(result.data);
+        })
+        .catch((error) => console.log(error));
+      fetchWeatherData();
     }
-  }, [getLat]);
+  }, [lat]);
 
   // on Time
   useEffect(() => {
-    if (getTime && getTime.localTime) {
-      console.log(getTime);
-      console.log(getTime.localTime);
-      setDisplayedDate(getTime.localTime.substring(0, 10));
-      setDisplayedTime(getTime.localTime.substring(11, 19));
+    if (time && time.localTime) {
+      console.log(time);
+      console.log(time.localTime);
+      setDisplayedDate(time.localTime.substring(0, 10));
+      setDisplayedTime(time.localTime.substring(11, 19));
     }
-  }, [getTime]);
+  }, [time]);
 
-  // on Weather
-  useEffect(() => {
-    if (getWeather.main) {
-      console.log(getWeather);
-      setTemp(getWeather.main.temp);
-      setMaxTemp(getWeather.main.temp_max);
-      setMinTemp(getWeather.main.temp_min);
-      setFeelsLikeTemp(getWeather.main.feels_like);
-      setHumidity(getWeather.main.humidity);
-      setDescription(getWeather.weather[0].description);
-    }
-  }, [getWeather]);
-
-  const getLatLong = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${region}&limit=1&appid=${WEATHER_API_KEY}`,
-      );
-      let lat = response.data[0]?.lat;
-      let lon = response.data[0]?.lon;
-      setLat(lat);
-      setLon(lon);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const fetchLatLong = async () => {
+    return await axios.get(
+      `https://api.openweathermap.org/geo/1.0/direct?q=${region}&limit=1&appid=${WEATHER_API_KEY}`,
+    );
   };
 
-  const getWeatherData = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${getLat}&lon=${getLon}&units=metric&appid=${WEATHER_API_KEY}`,
-      );
-      setWeather(response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const fetchWeatherData = () => {
+    const data = currentWeatherData({ lat: lat, lon: lon, units: 'metric', appid: WEATHER_API_KEY });
+    data.then((result) => setWeather(result.data)).catch((error) => console.log(error));
   };
 
   const getCurrentTime = async () => {
-    try {
-      const response = await axios.get(
-        `https://api-bdc.net/data/timezone-by-location?latitude=${getLat}&longitude=${getLon}&key=${TIME_API_KEY}`,
-      );
-      setTime(response.data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    return await axios.get(
+      `https://api-bdc.net/data/timezone-by-location?latitude=${lat}&longitude=${lon}&key=${TIME_API_KEY}`,
+    );
   };
 
   return (
@@ -122,27 +95,27 @@ export function DetailPage() {
                 <tbody>
                   <tr>
                     <td>Description:</td>
-                    <td style={{ textAlign: 'right' }}>{getDescription}</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.weather?.[0].description}</td>
                   </tr>
                   <tr>
                     <td>Temp.:</td>
-                    <td style={{ textAlign: 'right' }}>{getTemp}°</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.main?.temp}°</td>
                   </tr>
                   <tr>
                     <td>Feels like:</td>
-                    <td style={{ textAlign: 'right' }}>{getFeelsLikeTemp}°</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.main?.feels_like}°</td>
                   </tr>
                   <tr>
                     <td>Humidity:</td>
-                    <td style={{ textAlign: 'right' }}>{getHumidity}%</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.main?.humidity}%</td>
                   </tr>
                   <tr>
                     <td>Max Temp.:</td>
-                    <td style={{ textAlign: 'right' }}>{getMaxTemp}°</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.main?.temp_max}°</td>
                   </tr>
                   <tr>
                     <td>Min Temp.:</td>
-                    <td style={{ textAlign: 'right' }}>{getMinTemp}°</td>
+                    <td style={{ textAlign: 'right' }}>{weather?.main?.temp_min}°</td>
                   </tr>
                 </tbody>
               </table>
@@ -152,8 +125,8 @@ export function DetailPage() {
           <TimeCard>
             <CardHeader>Current Time</CardHeader>
             <TimeInfoCard sx={{ height: '140px', fontSize: '32px', display: 'flex' }}>
-              <div>{getDisplayedTime}</div>
-              <div>{getDisplayedDate}</div>
+              <div>{displayedTime}</div>
+              <div>{displayedDate}</div>
             </TimeInfoCard>
           </TimeCard>
         </CardGrid>

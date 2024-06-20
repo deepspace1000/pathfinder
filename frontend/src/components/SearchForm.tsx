@@ -1,13 +1,13 @@
 import { Search } from '@mui/icons-material';
 import { Button, Input, Stack, styled, Typography } from '@mui/joy';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function SearchForm() {
   const [getRegion, setRegion] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     navigate(`/detail/${getRegion}`);
   };
