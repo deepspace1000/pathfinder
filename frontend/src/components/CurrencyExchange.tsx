@@ -10,8 +10,8 @@ export function CurrencyExchange() {
   const [firstExchange, setFirstExchange] = useState('');
   const [secondExchange, setSecondExchange] = useState('');
   const [currencyAmount, setCurrencyAmount] = useState(0);
-  const [currencyResult1, setCurrencyResult1] = useState(0);
-  const [currencyResult2, setCurrencyResult2] = useState(0);
+  const [currencyResult1, setCurrencyResult1] = useState<number | string>(0);
+  const [currencyResult2, setCurrencyResult2] = useState<number | string>(0);
   const [convertingCurrency, setConvertingCurrency] = useState<CurrencyResponse | null>(null);
   const [exchangeName, setExchangeName] = useState('');
 
@@ -45,6 +45,7 @@ export function CurrencyExchange() {
         currencyName = secondExchange;
       }
       const response = await axios.get(`https://open.er-api.com/v6/latest/${currencyName}`);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setConvertingCurrency(response.data);
     } catch (error) {
       console.error('Error:', error);
@@ -53,7 +54,9 @@ export function CurrencyExchange() {
 
   const handleButtonClick = (name: string) => {
     setExchangeName(name);
-    getCurrencyData(name);
+    getCurrencyData(name)
+      .then()
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -71,7 +74,7 @@ export function CurrencyExchange() {
           placeholder="CHF"></CurrencyInput>
         <CurrencyInput
           value={currencyAmount}
-          onChange={(e) => setCurrencyAmount(e.target.value)}
+          onChange={(e) => setCurrencyAmount(Number(e.target.value))}
           placeholder="1000"></CurrencyInput>
         <CurrencyInput
           value={secondExchange}
