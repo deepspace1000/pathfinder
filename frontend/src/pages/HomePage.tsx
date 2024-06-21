@@ -12,7 +12,7 @@ import { SearchForm } from '../components/SearchForm.tsx';
 export function HomePage() {
   return (
     <>
-      <Grid container sx={{ flexGrow: 1, maxWidth: '100%' }} id={'header'}>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }} id={"header"}>
         <Grid xs={8} sx={{ position: 'relative', padding: '3rem 5rem' }}>
           <Typography level={'h1'} component={'h1'}>
             Pathfinder
@@ -28,9 +28,8 @@ export function HomePage() {
             <LocationIcon />
           </DecorTopRight>
         </Grid>
-      </Grid>
 
-      <Grid container sx={{ flexGrow: 1, padding: '2rem 5rem' }}>
+      <Grid container sx={{ flexGrow: 1, padding: '1rem 5rem' }}>
         <Grid xs={6} sx={{ position: 'relative' }}>
           <SearchForm></SearchForm>
         </Grid>
@@ -40,6 +39,8 @@ export function HomePage() {
           <FrontImage2 src={londonImg} />
           <FrontImage3 src={americaImg} />
         </Grid>
+      </Grid>
+
       </Grid>
 
       <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }}>
@@ -107,15 +108,14 @@ const FrontImage = styled('img')`
 `;
 
 const FrontImage1 = styled(FrontImage)`
-  top: -13em;
+  top: -6em;
   left: 5em;
 `;
 const FrontImage2 = styled(FrontImage)`
-  top: -8em;
+  top: -3em;
   left: 15em;
 `;
 const FrontImage3 = styled(FrontImage)`
-  top: -3em;
   left: 25em;
 `;
 
