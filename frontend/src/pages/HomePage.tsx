@@ -12,7 +12,7 @@ import { SearchForm } from '../components/SearchForm.tsx';
 export function HomePage() {
   return (
     <>
-      <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }} id={"header"}>
+      <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }} id={'header'}>
         <Grid xs={8} sx={{ position: 'relative', padding: '3rem 5rem' }}>
           <Typography level={'h1'} component={'h1'}>
             Pathfinder
@@ -29,18 +29,17 @@ export function HomePage() {
           </DecorTopRight>
         </Grid>
 
-      <Grid container sx={{ flexGrow: 1, padding: '1rem 5rem' }}>
-        <Grid xs={6} sx={{ position: 'relative' }}>
-          <SearchForm></SearchForm>
-        </Grid>
+        <Grid container sx={{ flexGrow: 1, padding: '1rem 5rem' }}>
+          <Grid xs={6} sx={{ position: 'relative' }}>
+            <SearchForm></SearchForm>
+          </Grid>
 
-        <Grid position={'relative'} display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
-          <FrontImage1 src={chinaImg} />
-          <FrontImage2 src={londonImg} />
-          <FrontImage3 src={americaImg} />
+          <Grid position={'relative'} display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
+            <FrontImage1 src={chinaImg} />
+            <FrontImage2 src={londonImg} />
+            <FrontImage3 src={americaImg} />
+          </Grid>
         </Grid>
-      </Grid>
-
       </Grid>
 
       <Grid container sx={{ flexGrow: 1, maxWidth: '100%', position: 'relative', height: '100vh' }}>
